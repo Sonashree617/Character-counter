@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Counter</title>
+</head>
+<body>
+    
+</body>
+</html>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color:brown;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            width: 420px;
+        }
+
+        h3 {
+            color: black;
+            font-weight: bold;
+            font-size: x-large;
+            margin-bottom: 12px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 200px;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 13px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            outline: none;
+        }
+
+        textarea:focus {
+            border-color:blue;
+            margin-right: 10px;
+        }
+
+        .info-text {
+            font-size: 14px;
+            color:white;
+            margin-top: 8px;
+        }
+        
+
+        #counter {
+            margin-top: 6px;
+            font-size: 14px;
+            color:black ;
+        }
+
+        #warning {
+            color: red;
+            display: none;
+            margin-top: 6px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h3>Message</h3>
+
+        <textarea id="message" placeholder="Type your message..."></textarea>
+
+        <p class="info-text">
+            Maximum characters: 200
+            <span style="margin-left: 20px;">
+                Remaining characters: <span id="remaining">200</span>
+            </span>
+        </p>
+
+        <p id="counter">0 / 200 characters</p>
+
+        <p id="warning">Character limit reached!</p>
+    </div>
+
+    <script>
+        const textarea = document.getElementById("message");
+        const counter = document.getElementById("counter");
+        const warning = document.getElementById("warning");
+        const remainingText = document.getElementById("remaining");
+
+        const maxLength = 200;
+
+        textarea.addEventListener("input", function () {
+            let length = textarea.value.length;
+
+            if (length > maxLength) {
+                textarea.value = textarea.value.substring(0, maxLength);
+                length = maxLength;
+                warning.style.display = "block";
+            } else {
+                warning.style.display = "none";
+            }
+
+            const remaining = maxLength - length;
+
+            counter.textContent = length + " / " + maxLength + " characters";
+            remainingText.textContent = remaining;
+        });
+    </script>
+
+</body>
+</html>
